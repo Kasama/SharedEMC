@@ -8,10 +8,10 @@ It is specially useful to use together with [Project Expansion](https://github.c
 
 This mod adds the `/shareEMC` command.
 
-`/shareEMC team create` creates a new sharing group.
-`/shareEMC team invite <Player>` adds a player to the sharing group.
-`/shareEMC team leave` leaves the sharing group.
-`/shareEMC team list` lists all players in the sharing group.
+- `/shareEMC team create` creates a new sharing group.
+- `/shareEMC team invite <Player>` adds a player to the sharing group.
+- `/shareEMC team leave` leaves the sharing group.
+- `/shareEMC team list` lists all players in the sharing group.
 
 ## Warning
 
