@@ -1,0 +1,104 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+        maven { url = "https://libraries.minecraft.net" }
+
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+
+group = 'com.robertoalegro.sharedemc'
+version = getProperty("mcVersion") + "-" + getProperty("localVersion")
+
+java {
+    archivesBaseName = 'SharedEMC'
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
+}
+
+minecraft {
+    mappings channel: getProperty("mappingsChannel"), version: getProperty("mappingsVersion")
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                sharedemc {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                sharedemc {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', 'sharedemc', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+
+            mods {
+                sharedemc {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    maven {
+        url "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${getProperty("mcVersion")}-${getProperty("forgeVersion")}"
+    implementation fg.deobf("curse.maven:projecte-226410:${getProperty("projecteVersion")}")
+    implementation "com.mojang:brigadier:1.0.18"
+    runtimeOnly fg.deobf("curse.maven:jei-238222:${getProperty("jeiVersion")}")
+    runtimeOnly fg.deobf("curse.maven:pipez-443900:${getProperty("pipezVersion")}")
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "Shared EMC",
+                "Specification-Vendor"    : "Kasama",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : "Kasama",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar')

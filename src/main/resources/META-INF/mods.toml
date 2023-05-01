@@ -1,0 +1,40 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="MIT"
+[[mods]]
+modId="sharedemc"
+version="${file.jarVersion}"
+displayName="Shared EMC"
+updateJSONURL="https://raw.githubusercontent.com/Kasama/SharedEMC/1.18/updates.json"
+displayURL="https://github.com/Kasama/SharedEMC"
+logoFile="icon.png"
+itemIcon = "minecraft:anvil"
+credits="sinkillerj for ProjectE"
+authors="Kasama"
+description='''
+A way to share EMC between multiple players
+'''
+[[dependencies.sharedemc]]
+   modId="forge"
+   mandatory=true
+   versionRange="[40,)"
+   ordering="NONE"
+   side="BOTH"
+[[dependencies.sharedemc]]
+   modId="minecraft"
+   mandatory=true
+   versionRange="[1.18.2]"
+   ordering="NONE"
+   side="BOTH"
+[[dependencies.sharedemc]]
+   modId="projecte"
+   mandatory=true
+   versionRange="*"
+   ordering="AFTER"
+   side="BOTH"
+[[dependencies.sharedemc]]
+modId = "catalogue"
+mandatory = false
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"

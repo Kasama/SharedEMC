@@ -1,0 +1,10 @@
+{
+	"command.shareemc.add_team.already_member": "You are already a member of the team.",
+	"command.shareemc.add_team.success": "Team created! Team members are: %s",
+	"command.shareemc.remove_team.not_member": "You are not a member of a team.",
+	"command.shareemc.remove_team.success": "Left team! Team members are: %s",
+	"command.shareemc.invite_team.success": "Invited %s to the team! Team members are: %s",
+	"command.shareemc.invite_team.target": "%s invited you to a joint EMC team! Team members are: %s",
+	"command.shareemc.invite_team.target_busy": "Player %s is already in another team, ask them to leave first.",
+	"command.shareemc.list_team": "Team members: %s"
+}
